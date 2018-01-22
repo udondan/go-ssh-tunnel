@@ -36,4 +36,4 @@ go install github.com/udondan/go-ssh-tunnel/ssh-tunnel
 ssh-tunnel --local 8080 --host example.com --remote 80
 ```
 
-Press <kbd>Ctrl-C</kbd> to close the tunnel.
+Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to close the tunnel.
