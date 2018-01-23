@@ -6,9 +6,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
-
-	sshTunnel "github.com/udondan/go-ssh-tunnel"
+	"context"
+	"github.com/udondan/go-ssh-tunnel"
 )
 
 func main() {
@@ -34,26 +33,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	t := sshTunnel.New(*local, *host, *remote)
+	t := sshTunnel.New(context.Background(), *local, *host, *remote)
 
-	err := t.Open()
-	if err != nil {
+	if err := t.Open(); err != nil {
 		exitErr(err)
 	}
 
 	sigs := make(chan os.Signal, 1)
-	done := make(chan bool, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	go func() {
-		_ = <-sigs
-		done <- true
-	}()
-
 	fmt.Println("Press Ctrl-C to close tunnel")
-	<-done
+
+	<-sigs
 	t.Close()
-	time.Sleep(1 * time.Second)
 }
 
 func exitErr(err error) {
