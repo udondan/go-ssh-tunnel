@@ -12,13 +12,11 @@ import (
 )
 
 func main() {
-    t := sshTunnel.New(8080, "example.com", 80)
+    t := sshTunnel.New(context.Background(), 8080, "example.com", 80)
 
     // do something with the tunnel
 
     t.Close()
-    //give it a sec to close...
-    time.Sleep(1 * time.Second)
 }
 ```
 
