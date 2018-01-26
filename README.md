@@ -8,11 +8,13 @@
 package main
 
 import (
-    sshTunnel "github.com/udondan/go-ssh-tunnel"
+    "context"
+    "github.com/udondan/go-ssh-tunnel"
 )
 
 func main() {
-    t := sshTunnel.New(context.Background(), 8080, "example.com", 80)
+    ctx := context.Background()
+    t := sshTunnel.New(ctx, 8080, "example.com", 80)
 
     // do something with the tunnel
 
