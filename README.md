@@ -27,7 +27,7 @@ func main() {
 ### Installation
 
 ```bash
-go install github.com/udondan/go-ssh-tunnel/ssh-tunnel
+go install github.com/udondan/go-ssh-tunnel/cmd/ssh-tunnel
 ```
 
 ### Usage 
