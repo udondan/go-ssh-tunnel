@@ -15,9 +15,9 @@ import (
 func main() {
     ctx := context.Background()
     t := sshTunnel.New(ctx, 8080, "example.com", 80)
-	if err := t.Open(); err != nil {
-		panic(err)
-	}
+    if err := t.Open(); err != nil {
+      panic(err)
+    }
     defer t.Close()
     
     // do something with the tunnel
